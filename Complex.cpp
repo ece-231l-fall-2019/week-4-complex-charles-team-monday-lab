@@ -49,6 +49,7 @@ Complex& Complex::operator/=(const Complex& z)
 
 Complex operator+(const Complex& a, const Complex& b);
 {
+
 }
 Complex operator-(const Complex& a, const Complex& b);
 {
@@ -77,19 +78,45 @@ Complex conj(const Complex& z)
 
 bool operator==(const Complex& a, const Complex& b)
 {
+	if (a._real == b._real && a._imag == b._imag)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 bool operator==(const Complex& a, double r)
 {
+	if (a._real == r && a._imag == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 bool operator!=(const Complex& a, const Complex& b)
 {
+	
 }
 bool operator!=(const Complex& a, double r)
 {
+
 }
 
 //write the complex number z to the output stream in the format "6+5i" or "6-5i"
 
 std::ostream& operator<<(std::ostream& out, const Complex& z)
 {
+	if (z._imag < 0)
+	{
+		out << z._real <<  " - " << z._out << endl;
+	}
+	else
+	{
+		out << z._real << " + " << z._out << endl;
+	}
 }
