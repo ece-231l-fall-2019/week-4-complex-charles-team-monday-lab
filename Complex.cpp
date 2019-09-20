@@ -11,9 +11,14 @@ Complex& Complex::operator=(const Complex& z)
 	_imag = z._imag;
 	return *this;
 }
+
 Complex& Complex::operator=(double r)
 {
+	_real = r;
+	_imag = 0.0;
+	return *this;
 }
+
 Complex& Complex::operator+=(const Complex& z)
 {
 	_real += z._real;
@@ -28,8 +33,8 @@ Complex& Complex::operator-=(const Complex& z)
 }
 Complex& Complex::operator*=(const Complex& z)
 {
-	_real *= z._real;
-	_imag *= z._imag;
+	_real = z._real * z._real;
+	_imag = z._imag * z._imag;
 	return *this;
 }
 Complex& Complex::operator/=(const Complex& z)
@@ -65,6 +70,7 @@ double norm(const Complex& z)
 
 Complex conj(const Complex& z)
 {
+	_imag = -z._imag;
 }
 
 // Comparison
