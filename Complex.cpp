@@ -33,14 +33,14 @@ Complex& Complex::operator-=(const Complex& z)
 }
 Complex& Complex::operator*=(const Complex& z)
 {
-	_real = z._real * z._real;
-	_imag = z._imag * z._imag;
+	_real = (z._real * z._real) + (-1 * (z._imag * z._imag));
+	_imag = (z._imag * z._real)*2;
 	return *this;
 }
 Complex& Complex::operator/=(const Complex& z)
 {
-	_real /= z._real;
-	_imag /= z._imag;
+	_real = 
+	_imag = z._imag;
 	return *this;
 }
 
@@ -49,29 +49,46 @@ Complex& Complex::operator/=(const Complex& z)
 
 Complex operator+(const Complex& a, const Complex& b);
 {
-
+	Complex& c;
+	c._real = a._real + b._real;
+	c._imag = a._imag + b._imag;\
+	return c;
 }
 Complex operator-(const Complex& a, const Complex& b);
 {
+	Complex& c;
+	c._real = a._real - b._real;
+	c._imag = a._imag - b._imag;
+	return c;
 }
 Complex operator*(const Complex& a, const Complex& b);
 {
+	Complex& c;
+	c._real = (a._real * b._real) + (-1*(a._imag * b._imag));
+	c._imag = (a._real * b._imag) + (b._real * a._imag);
 }
 Complex operator/(const Complex& a, const Complex& b);
 {
+
 }
 
 // norm returns the squared magnitude of z
 
 double norm(const Complex& z)
 {
+	_real = _real * z._real;
+	_imag = _imag * z._imag;
+	z = _real + _imag;
+	return z;
 }
 
 // conj returns the complex conjugate of z
 
 Complex conj(const Complex& z)
 {
-	_imag = -z._imag;
+	z._real = z._real
+	z._imag = -z._imag;
+	return z;
 }
 
 // Comparison
@@ -100,11 +117,25 @@ bool operator==(const Complex& a, double r)
 }
 bool operator!=(const Complex& a, const Complex& b)
 {
-	
+	if (a._real != b._real && a._imag != b._imag)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 bool operator!=(const Complex& a, double r)
 {
-
+	if (a._real != r && a._imag != 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 //write the complex number z to the output stream in the format "6+5i" or "6-5i"
