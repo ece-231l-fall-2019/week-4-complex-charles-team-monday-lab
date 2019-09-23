@@ -51,14 +51,14 @@ Complex& Complex::operator-=(const Complex& z)
 }
 Complex& Complex::operator*=(const Complex& z)
 {
-	_real = (_real * z._real) + (-1 * (_imag * z._imag));
-	_imag = (_imag * z._real)*2;
+	_real = (_real * z._real) - (_imag *z._imag);
+	_imag = (_imag * z._real) + (_real * z._imag);
 	return *this;
 }
 Complex& Complex::operator/=(const Complex& z)
 {
-	_real = z._real;
-	_imag = z._imag;
+	_real =( (_real * z._real) + (_imag * -z._imag) ) / norm(z);
+	_imag = ( ( _real * -z._imag ) + ( _imag * z._real ) ) / norm(z);
 	return *this;
 }
 
@@ -72,7 +72,7 @@ Complex operator+(const Complex& a, const Complex& b)
 }
 Complex operator-(const Complex& a, const Complex& b)
 {
-	Complex c(a.real()-b.real(), a.imag() - b.imag());
+	Complex c(a.real() - b.real(), a.imag() - b.imag());
 	return c;
 }
 Complex operator*(const Complex& a, const Complex& b)
@@ -82,7 +82,7 @@ Complex operator*(const Complex& a, const Complex& b)
 }
 Complex operator/(const Complex& a, const Complex& b)
 {
-	Complex c(0.0,0.0);
+	Complex c( ( (a.real() * b.real()) + (a.imag() * -b.imag() ) / norm(b) ) , (( (a.real() * -b.imag()) + (a.imag() * b.real() )) / norm(b)) );
 	return c;
 }
 
@@ -155,7 +155,7 @@ std::ostream& operator<<(std::ostream& out, const Complex& z)
 {
 	if (z.imag() < 0)
 	{
-		return out << z.real() <<  " - " << z.imag() << "i" <<std::endl;
+		return out << z.real() << z.imag() << "i" <<std::endl;
 	}
 	else
 	{
