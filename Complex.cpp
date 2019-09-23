@@ -7,8 +7,8 @@ Complex::Complex()
 }
 Complex& Complex::operator=(const Complex& z)
 {
-	_real = z._real;
-	_imag = z._imag;
+	_real = z.real();
+	_imag = z.imag();
 	return *this;
 }
 
@@ -21,25 +21,25 @@ Complex& Complex::operator=(double r)
 
 Complex& Complex::operator+=(const Complex& z)
 {
-	_real += z._real;
-	_imag += z._imag;
+	_real += z.real();
+	_imag += z.imag();
 	return *this;
 }
 Complex& Complex::operator-=(const Complex& z)
 {
-	_real -= z._real;
-	_imag -= z._imag;
+	_real -= z.real();
+	_imag -= z.imag();
 	return *this;
 }
 Complex& Complex::operator*=(const Complex& z)
 {
-	_real = (z._real * z._real) + (-1 * (z._imag * z._imag));
-	_imag = (z._imag * z._real)*2;
+	_real = (_real * z._real) + (-1 * (_imag * z._imag));
+	_imag = (_imag * z._real)*2;
 	return *this;
 }
 Complex& Complex::operator/=(const Complex& z)
 {
-	_real = 
+	_real = z._real;
 	_imag = z._imag;
 	return *this;
 }
@@ -47,55 +47,48 @@ Complex& Complex::operator/=(const Complex& z)
 
 // basic math operations
 
-Complex operator+(const Complex& a, const Complex& b);
+Complex operator+(const Complex& a, const Complex& b)
 {
-	Complex& c;
-	c._real = a._real + b._real;
-	c._imag = a._imag + b._imag;\
+	Complex c(a.real()+b.real(), a.imag()+b.imag());
 	return c;
 }
-Complex operator-(const Complex& a, const Complex& b);
+Complex operator-(const Complex& a, const Complex& b)
 {
-	Complex& c;
-	c._real = a._real - b._real;
-	c._imag = a._imag - b._imag;
+	Complex c(a.real()-b.real(), a.imag() - b.imag());
 	return c;
 }
-Complex operator*(const Complex& a, const Complex& b);
+Complex operator*(const Complex& a, const Complex& b)
 {
-	Complex& c;
-	c._real = (a._real * b._real) + (-1*(a._imag * b._imag));
-	c._imag = (a._real * b._imag) + (b._real * a._imag);
+	Complex c((a.real() * b.real())+(-1*(a.imag()*b.imag())), ((a.real()*b.imag())+(b.real()*a.imag())));
+	return c;
 }
-Complex operator/(const Complex& a, const Complex& b);
+Complex operator/(const Complex& a, const Complex& b)
 {
-
+	Complex c(0.0,0.0);
+	return c;
 }
 
 // norm returns the squared magnitude of z
 
 double norm(const Complex& z)
 {
-	_real = _real * z._real;
-	_imag = _imag * z._imag;
-	z = _real + _imag;
-	return z;
+	double c = (z.real() * z.real()) + (z.imag() * z.imag());
+	return c;
 }
 
 // conj returns the complex conjugate of z
 
 Complex conj(const Complex& z)
 {
-	z._real = z._real
-	z._imag = -z._imag;
-	return z;
+	Complex c (z.real(), -z.imag());
+	return c;
 }
 
 // Comparison
 
 bool operator==(const Complex& a, const Complex& b)
 {
-	if (a._real == b._real && a._imag == b._imag)
+	if (a.real() == b.real() && a.imag() == b.imag())
 	{
 		return true;
 	}
@@ -106,7 +99,7 @@ bool operator==(const Complex& a, const Complex& b)
 }
 bool operator==(const Complex& a, double r)
 {
-	if (a._real == r && a._imag == 0)
+	if (a.real() == r && a.imag() == 0.0)
 	{
 		return true;
 	}
@@ -117,7 +110,7 @@ bool operator==(const Complex& a, double r)
 }
 bool operator!=(const Complex& a, const Complex& b)
 {
-	if (a._real != b._real && a._imag != b._imag)
+	if (a.real() != b.real() && a.imag() != b.imag())
 	{
 		return true;
 	}
@@ -128,7 +121,7 @@ bool operator!=(const Complex& a, const Complex& b)
 }
 bool operator!=(const Complex& a, double r)
 {
-	if (a._real != r && a._imag != 0)
+	if (a.real() != r && a.imag() != 0.0)
 	{
 		return true;
 	}
@@ -142,12 +135,12 @@ bool operator!=(const Complex& a, double r)
 
 std::ostream& operator<<(std::ostream& out, const Complex& z)
 {
-	if (z._imag < 0)
+	if (z.imag() < 0)
 	{
-		out << z._real <<  " - " << z._out << endl;
+		return out << z.real() <<  " - " << z.imag() << std::endl;
 	}
 	else
 	{
-		out << z._real << " + " << z._out << endl;
+		return out << z.real() << " + " << z.imag() << std::endl;
 	}
 }
