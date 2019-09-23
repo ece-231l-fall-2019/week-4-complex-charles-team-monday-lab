@@ -5,6 +5,24 @@ Complex::Complex()
 	_real = 0.0;
 	_imag = 0.0;
 }
+Complex::Complex(double re, double im)
+{
+	_real = re;
+	_imag = im;
+}
+Complex::Complex(const Complex& z)
+{
+	_real = z._real;
+	_imag = z._imag;
+}
+double Complex::real() const
+{
+	return _real;
+}
+double Complex::imag() const
+{
+	return _imag;
+}
 Complex& Complex::operator=(const Complex& z)
 {
 	_real = z.real();
@@ -137,10 +155,10 @@ std::ostream& operator<<(std::ostream& out, const Complex& z)
 {
 	if (z.imag() < 0)
 	{
-		return out << z.real() <<  " - " << z.imag() << std::endl;
+		return out << z.real() <<  " - " << z.imag() << "i" <<std::endl;
 	}
 	else
 	{
-		return out << z.real() << " + " << z.imag() << std::endl;
+		return out << z.real() << " + " << z.imag() << "i" <<std::endl;
 	}
 }
