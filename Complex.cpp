@@ -51,14 +51,14 @@ Complex& Complex::operator-=(const Complex& z)
 }
 Complex& Complex::operator*=(const Complex& z)
 {
-	_real = (_real * z._real) - (_imag *z._imag);
+	_real = (_real * z._real) - (_imag * z._imag);
 	_imag = (_imag * z._real) + (_real * z._imag);
 	return *this;
 }
 Complex& Complex::operator/=(const Complex& z)
 {
-	_real =( (_real * z._real) + (_imag * -z._imag) ) / norm(z);
-	_imag = ( ( _real * -z._imag ) + ( _imag * z._real ) ) / norm(z);
+	_real =( ( _real * z._real ) - ( _imag * z._imag) ) / ((z._real*z._real)+(z._imag * z._imag));
+	_imag = ( ( _real * -z._imag ) + ( _imag * z._real ) ) / ((z._real * z._real)+(z._imag*z._imag));
 	return *this;
 }
 
@@ -82,7 +82,12 @@ Complex operator*(const Complex& a, const Complex& b)
 }
 Complex operator/(const Complex& a, const Complex& b)
 {
-	Complex c( ( (a.real() * b.real()) + (a.imag() * -b.imag() ) / norm(b) ) , (( (a.real() * -b.imag()) + (a.imag() * b.real() )) / norm(b)) );
+	double rel = 0.0;
+	double comp = 0.0;
+	rel =(((a.real()*b.real())-(a.imag() * -b.imag())))/norm(b);
+	comp = (((a.real() * -b.imag()) + (a.imag() * b.real()))/norm(b));
+	//Complex c( ( (a.real() * b.real()) + (a.imag() * -b.imag() ) / norm(b) ) , (( (a.real() * -b.imag()) + (a.imag() * b.real() )) / norm(b)) );
+	Complex c (rel,comp);
 	return c;
 }
 
@@ -98,7 +103,7 @@ double norm(const Complex& z)
 
 Complex conj(const Complex& z)
 {
-	Complex c (z.real(), -z.imag());
+	Complex c (z.real() , -z.imag());
 	return c;
 }
 
