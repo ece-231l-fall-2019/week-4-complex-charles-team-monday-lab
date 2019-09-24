@@ -86,7 +86,6 @@ Complex operator/(const Complex& a, const Complex& b)
 	double comp = 0.0;
 	rel =(((a.real()*b.real())-(a.imag() * -b.imag())))/norm(b);
 	comp = (((a.real() * -b.imag()) + (a.imag() * b.real()))/norm(b));
-	//Complex c( ( (a.real() * b.real()) + (a.imag() * -b.imag() ) / norm(b) ) , (( (a.real() * -b.imag()) + (a.imag() * b.real() )) / norm(b)) );
 	Complex c (rel,comp);
 	return c;
 }
