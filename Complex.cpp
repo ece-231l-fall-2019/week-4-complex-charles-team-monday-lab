@@ -87,6 +87,10 @@ Complex operator/(const Complex& a, const Complex& b)
 {
 	double rel = 0.0;
 	double comp = 0.0;
+	if (b.real() == 0.0 && b.imag() == 0)
+	{
+		std::cout << "Invalid, Division by Zero : ";
+	}	
 	rel =(((a.real()*b.real())-(a.imag() * -b.imag())))/norm(b);
 	comp = (((a.real() * -b.imag()) + (a.imag() * b.real()))/norm(b));
 	Complex c (rel,comp);
@@ -160,10 +164,10 @@ std::ostream& operator<<(std::ostream& out, const Complex& z)
 {
 	if (z.imag() < 0)
 	{
-		return out << "(" << z.real() << " - " <<-z.imag() << "i"<<")" <<std::endl;
+		return out << "(" << z.real() << " - " <<-z.imag() << "i)";
 	}
 	else
 	{
-		return out <<"("<< z.real() << " + " << z.imag() << "i)" <<std::endl;
+		return out <<"("<< z.real() << " + " << z.imag() << "i)"
 	}
 }
