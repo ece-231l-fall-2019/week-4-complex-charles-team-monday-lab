@@ -51,14 +51,17 @@ Complex& Complex::operator-=(const Complex& z)
 }
 Complex& Complex::operator*=(const Complex& z)
 {
+	double c = _real;
 	_real = (_real * z._real) - (_imag * z._imag);
-	_imag = (_imag * z._real) + (_real * z._imag);
+	_imag = (_imag * z._real) + (c * z._imag);
 	return *this;
 }
 Complex& Complex::operator/=(const Complex& z)
 {
-	_real =( ( _real * z._real ) - ( _imag * z._imag) ) / ((z._real*z._real)+(z._imag * z._imag));
-	_imag = ( ( _real * -z._imag ) + ( _imag * z._real ) ) / ((z._real * z._real)+(z._imag*z._imag));
+	double c = _real;
+	double r = z._real;
+	_real =( ( _real * r ) + ( _imag * z.imag()) ) / norm(z);
+	_imag = ( ( c * -z.imag() ) + ( _imag * r ) ) / norm(z);
 	return *this;
 }
 
@@ -143,14 +146,12 @@ bool operator!=(const Complex& a, const Complex& b)
 }
 bool operator!=(const Complex& a, double r)
 {
-	if (a.real() != r && a.imag() != 0.0)
-	{
-		return true;
-	}
-	else
+	if (a.real() == r && a.imag() == 0.0)
 	{
 		return false;
 	}
+
+return true;
 }
 
 //write the complex number z to the output stream in the format "6+5i" or "6-5i"
