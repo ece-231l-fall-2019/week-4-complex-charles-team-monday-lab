@@ -160,7 +160,7 @@ std::ostream& operator<<(std::ostream& out, const Complex& z)
 {
 	if (z.imag() < 0)
 	{
-		return out << z.real() << z.imag() << "i" <<std::endl;
+		return out << z.real() << " - " <<-z.imag() << "i" <<std::endl;
 	}
 	else
 	{
