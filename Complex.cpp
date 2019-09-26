@@ -40,7 +40,11 @@ Complex& Complex::operator=(double r)
 Complex& Complex::operator+=(const Complex& z)
 {
 	_real += z.real();
+<<<<<<< HEAD
+	_imag += z._imag;
+=======
 	_imag += z.imag();
+>>>>>>> master
 	return *this;
 }
 Complex& Complex::operator-=(const Complex& z)
@@ -52,20 +56,82 @@ Complex& Complex::operator-=(const Complex& z)
 Complex& Complex::operator*=(const Complex& z)
 {
 	double c = _real;
+<<<<<<< HEAD
+	_real = (_real * z.real()) - (_imag * z.imag());
+	_imag = (_imag * z.real()) + (c * z.imag());
+=======
 	_real = (_real * z._real) - (_imag * z._imag);
 	_imag = (_imag * z._real) + (c * z._imag);
+>>>>>>> master
 	return *this;
 }
 Complex& Complex::operator/=(const Complex& z)
 {
 	double c = _real;
+<<<<<<< HEAD
+	double r = z.real();
+	_real = (( _real * r ) + ( _imag * z.imag()) ) / norm(z);
+	_imag = (( c * -z.imag() ) + ( _imag * r )) / norm(z);
+	return *this;
+}
+
+
+// basic math operations
+
+Complex operator+(const Complex& a, const Complex& b)
+{
+	Complex c(a.real()+b.real(), a.imag()+b.imag());
+	return c;
+}
+Complex operator-(const Complex& a, const Complex& b)
+{
+	Complex c(a.real() - b.real(), a.imag() - b.imag());
+	return c;
+}
+Complex operator*(const Complex& a, const Complex& b)
+{
+	Complex c((a.real() * b.real())+(-1*(a.imag()*b.imag())), ((a.real()*b.imag())+(b.real()*a.imag())));
+	return c;
+}
+Complex operator/(const Complex& a, const Complex& b)
+{
+	double rel = 0.0;
+	double comp = 0.0;
+	if(b.real() == 0 && b.imag() == 0)
+	{
+		std::cout << "Invalid, Divison by Zero : ";
+	}
+	rel =(((a.real()*b.real())-(a.imag() * -b.imag())))/norm(b);
+	comp = (((a.real() * -b.imag()) + (a.imag() * b.real()))/norm(b));
+	Complex c (rel,comp);
+	return c;
+}
+=======
 	double r = z._real;
 	_real =( ( _real * r ) + ( _imag * z.imag()) ) / norm(z);
 	_imag = ( ( c * -z.imag() ) + ( _imag * r ) ) / norm(z);
 	return *this;
 }
+>>>>>>> master
 
+// norm returns the squared magnitude of z
 
+double norm(const Complex& z)
+{
+	double c = (z.real() * z.real()) + (z.imag() * z.imag());
+	return c;
+}
+
+// conj returns the complex conjugate of z
+
+Complex conj(const Complex& z)
+{
+	Complex c (z.real() , -z.imag());
+	return c;
+}
+
+<<<<<<< HEAD
+=======
 // basic math operations
 
 Complex operator+(const Complex& a, const Complex& b)
@@ -109,6 +175,7 @@ Complex conj(const Complex& z)
 	return c;
 }
 
+>>>>>>> master
 // Comparison
 
 bool operator==(const Complex& a, const Complex& b)
@@ -151,7 +218,11 @@ bool operator!=(const Complex& a, double r)
 		return false;
 	}
 
+<<<<<<< HEAD
+	return true;
+=======
 return true;
+>>>>>>> master
 }
 
 //write the complex number z to the output stream in the format "6+5i" or "6-5i"
@@ -160,6 +231,15 @@ std::ostream& operator<<(std::ostream& out, const Complex& z)
 {
 	if (z.imag() < 0)
 	{
+<<<<<<< HEAD
+		return out << "(" << z.real() << " - " <<-z.imag() << "i)";
+	}
+	else
+	{
+		return out << "(" << z.real() << " + " << z.imag() << "i)";
+	}
+}
+=======
 		return out << z.real() << " - " <<-z.imag() << "i" <<std::endl;
 	}
 	else
@@ -167,3 +247,4 @@ std::ostream& operator<<(std::ostream& out, const Complex& z)
 		return out << z.real() << " + " << z.imag() << "i" <<std::endl;
 	}
 }
+>>>>>>> master

@@ -3,7 +3,7 @@
 // change the value below to 1 to run tests against your Complex class.
 // change the value below to 0 to run tests against the built in std::complex.
 
-#if 1
+#if 1 // TESTING Built-In complex
 #include "Complex.h"
 #else
 #include <complex>
@@ -31,7 +31,11 @@ int main()
 	Assert(z1.imag() == 3, "real constructor");
 //--- Test #2 ---- Assert Complex Z4 ---------------------------------------
 	Assert(z4.real() == -2, "real constructor");
+<<<<<<< HEAD
+	Assert(z4.imag() == 4, "real constructor");
+=======
 	Assert(z4.imag() == -4, "real constructor");
+>>>>>>> master
 //--- Test #3 ---- Assert Complex Z6 ---------------------------------------
 	Assert(z6.real() == 6, "real constructor");
 	Assert(z6.imag() == 0, "real constructor");
