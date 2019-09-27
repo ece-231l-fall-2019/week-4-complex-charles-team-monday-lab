@@ -168,6 +168,6 @@ std::ostream& operator<<(std::ostream& out, const Complex& z)
 	}
 	else
 	{
-		return out <<"("<< z.real() << " + " << z.imag() << "i)"
+		return out <<"("<< z.real() << " + " << z.imag() << "i)";
 	}
 }
