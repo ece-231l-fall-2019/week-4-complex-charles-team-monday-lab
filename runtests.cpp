@@ -3,7 +3,7 @@
 // change the value below to 1 to run tests against your Complex class.
 // change the value below to 0 to run tests against the built in std::complex.
 
-#if 1 // TESTING Built-In complex
+#if 1 
 #include "Complex.h"
 #else
 #include <complex>
@@ -31,11 +31,8 @@ int main()
 	Assert(z1.imag() == 3, "real constructor");
 //--- Test #2 ---- Assert Complex Z4 ---------------------------------------
 	Assert(z4.real() == -2, "real constructor");
-<<<<<<< HEAD
 	Assert(z4.imag() == 4, "real constructor");
-=======
-	Assert(z4.imag() == -4, "real constructor");
->>>>>>> master
+	
 //--- Test #3 ---- Assert Complex Z6 ---------------------------------------
 	Assert(z6.real() == 6, "real constructor");
 	Assert(z6.imag() == 0, "real constructor");
@@ -72,8 +69,8 @@ int main()
 	std::cout <<" z5 / z6 = " << z5 / z6 <<std::endl; // ANSWER: (0 + 1.3333i)
 	std::cout <<" z1 / z5 = " << z1 / z5 <<std::endl; // ANSWER: (0.375 - 0.5i)
 	std::cout <<" z1 / z1 = " << z1 / z1 <<std::endl; // ANSWER: (1 + 0i)
-	Complex z8(0,0);
-	std::cout <<" z1 / (0 + 0i) = " << z1 / z8 <<std::endl; // UNDEFIND
+	Complex z8(0,0);                                  // Check Divsion by Zero
+	std::cout <<" z1 / (0 + 0i) = " << z1 / z8 <<std::endl; // Invalid
 	std::cout << "\n";
 	
 //--- Test #9 ---- Conjugate --------------------------------------------------------
@@ -215,5 +212,3 @@ int main()
 //--- END OF TESTING -------------------------------------------------------------------------
 	return 0;
 }
-
-
